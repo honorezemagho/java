@@ -2,15 +2,19 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        byte addition = 1 + 8;
-        byte substraction = 8 - 3;
-        int multiplication = 45 * 89;
-        byte modulo = 74 % 5;
-        // Casting in java
-        double division = (double) 17 / (double) 3;
+        // Implicit casting or Automatic Casting
+        short x = 1;
+        int y = x + 2;
+        System.out.println(y);
 
-        System.out.println("Addition " + addition + " Substraction " + substraction + " Multiplication "
-                + multiplication + " Division " + division + " Modulo " + modulo);
+        double k = 1.1;
+        double z = k + 2;
+        System.out.println(z);
+
+        // Explicit Casting
+        double field1 = 1.1;
+        int field2 = (int) x + 2;
+        System.out.println(field2);
     }
 }
 
