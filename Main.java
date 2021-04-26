@@ -1,20 +1,20 @@
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        // Implicit casting or Automatic Casting
-        short x = 1;
-        int y = x + 2;
-        System.out.println(y);
+        // Math Library
+        int result = (int) (Math.random() * 100);
+        System.out.println(result);
 
-        double k = 1.1;
-        double z = k + 2;
-        System.out.println(z);
+        // Format Numbers in java
+        NumberFormat percent = NumberFormat.getPercentInstance();
+        String conversion = percent.format(0.1);
+        System.out.println(conversion);
 
-        // Explicit Casting
-        double field1 = 1.1;
-        int field2 = (int) x + 2;
-        System.out.println(field2);
+        // Method Chaining
+        String chaining = NumberFormat.getCurrencyInstance().format(1_457_89.47);
+        System.out.println(chaining);
     }
 }
 
