@@ -14,8 +14,6 @@ public class ControlFlow {
         else{
             // System.out.println("Your shoe selection will make you very happy today");
         }
-
-        scanner.close();
     }
 
     public static void isPlaying(){
@@ -31,7 +29,6 @@ public class ControlFlow {
             }
         }
         System.out.println("Playing the next song");
-        scanner.close();
     }
 
     public static void multipleChoice(){
