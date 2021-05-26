@@ -3,6 +3,8 @@ package com.example.demo.student;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 
 @Entity
 @Table
@@ -20,27 +22,28 @@ public class Student {
     private long id;
     private String name;
     private String email;
-    private Integer age;
     private LocalDate date_of_birth;
+    // To specify that this field should not be a column in our database
+    @Transient
+    private Integer age;
+
 
     public Student(){
 
     }
 
-    public  Student(long id, String name, String email, Integer age, LocalDate date_of_birth){
+    public  Student(long id, String name, String email, LocalDate date_of_birth){
         this.id = id;
         this.name = name;
         this.email = email;
         this.date_of_birth = date_of_birth;
-        this.age = age;
     }
 
-    public  Student(String name, String email, Integer age, LocalDate date_of_birth){
+    public  Student(String name, String email, LocalDate date_of_birth){
         this.id = id;
         this.name = name;
         this.email = email;
         this.date_of_birth = date_of_birth;
-        this.age = age;
     }
 
     public long getId() {
@@ -68,7 +71,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return age;
+        return Period.between(this.date_of_birth, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
@@ -89,7 +92,6 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
                 ", date_of_birth=" + date_of_birth +
                 '}';
     }
