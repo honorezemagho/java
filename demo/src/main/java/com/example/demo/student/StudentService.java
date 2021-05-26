@@ -2,9 +2,11 @@ package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -31,6 +33,13 @@ public class StudentService{
         return pat.matcher(email).matches();
     }
 
+    public Student findUser(Long studentId){
+
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalStateException("Student with id " + studentId + " does not exist"));
+       return student;
+    }
+
     public List<Student> getStudents(){
                 return this.studentRepository.findAll();
     }
@@ -49,5 +58,26 @@ public class StudentService{
         }
 
         this.studentRepository.save(student);
+    }
+
+    @Transactional
+    public void updateStudent(Long studentId,String name,String email) {
+        Student student = this.findUser(studentId);
+
+
+        if(name != null & name.length() > 0 &&
+                !Objects.equals(student.getName(), name)){
+            student.setName(name);
+        }
+
+        if(email != null & email.length() > 0 && isValidEmail(student.getEmail()) &&
+                !Objects.equals(student.getEmail(), email)){
+            student.setEmail(email);
+        }
+    }
+
+    public void deleteStudent(Long studentId) {
+        this.findUser(studentId);
+        studentRepository.deleteById(studentId);
     }
 }
